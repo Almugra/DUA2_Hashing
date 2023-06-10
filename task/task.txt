@@ -1,0 +1,21 @@
+Schreiben Sie ein Programm, das ein Wörterbuch auf der Basis von 
+Hashing mit Listen implementiert. Ausgehend von einem leeren Wörterbuch 
+führt das Programm die in einer Datei angegebenen Operationen durch 
+und gibt das Ergebnis auf der Konsole aus. Die Hashtabelle darf dabei 
+nicht mehr als 2^{16} Einträge haben. Kollisionsauflösung muß über selbst 
+implementierte verzeigerte Listen erfolgen. 
+Ihr Programm muß die folgenden vier Funktionen 
+mit genau den unten angegebenen Namen enthalten:
+
+hashCreate(n): Erzeugt eine leere Hashtabelle der Größe n.
+hashInsert(T,x): Falls x noch nicht in T vorhanden ist, füge x in T ein.
+hashRemove(T,x): Falls x in T vorhanden ist, lösche x aus T .
+hashSearch(T,x): Suche x in T und liefere das Ergebnis {true, f alse} zurück.
+
+Die einzulesende Textdatei ist wie folgt formatiert: 
+In der ersten Zeile steht ein Kommentar beginnend mit #.
+Jede weitere Zeile enthält ein Kommando aus {ins, del, search}, gefolgt
+von einem Leerzeichen und einem String s über {a, ..., d} der Länge ≤ 20.
+Der Name der zu lesenden Datei wird dem Programm als einziges Argument übergeben.
+Zu jeder durchgeführten Operation soll als Ausgabe 
+genau eine Zeile in die Konsole geschrieben werden:
