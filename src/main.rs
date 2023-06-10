@@ -58,8 +58,9 @@ fn main() {
         });
 
     println!("Time: {:?}", now.elapsed());
-    //./task/pubInst/b08192.txt = Time: ~28ms HashSet
-    //./task/pubInst/b08192.txt = Time: ~35ms BTreeSet
-    //./task/pubInst/b08192.txt = Time: ~380ms CustomHashFunction
-    //./task/pubInst/b08192.txt = Time: ~30ms CustomHashByteFunction
 }
+
+//./task/pubInst/b08192.txt = Time: ~28ms HashSet
+//            "             = Time: ~35ms BTreeSet
+//            "             = Time: ~380ms CustomHashFunction
+//            "             = Time: ~30ms CustomHashByteFunction
