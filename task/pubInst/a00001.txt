@@ -1,0 +1,2 @@
+# list of 1 random operations with string arguments of length 1,...,2, seed=1
+ins ba

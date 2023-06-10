@@ -1,0 +1,5 @@
+# list of 4 random operations with string arguments of length 1,...,2, seed=3
+ins cb
+del ab
+del cb
+ins bc

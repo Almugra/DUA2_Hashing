@@ -1,0 +1,17 @@
+# list of 16 random operations with string arguments of length 1,...,2, seed=5
+ins dd
+ins ca
+ins ad
+ins dc
+ins ab
+ins aa
+del bc
+search bc
+del cb
+search ca
+search ca
+search ad
+del cc
+ins db
+del ab
+del dd
