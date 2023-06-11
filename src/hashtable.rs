@@ -1,3 +1,4 @@
+#![allow(non_snake_case)]
 use std::{cell::RefCell, ptr};
 
 const CHAR_TO_NUM: [u64; 256] = {

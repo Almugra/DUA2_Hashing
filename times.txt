@@ -1,0 +1,8 @@
+File: ./task/pubInst/b08192.txt
+
+~28ms  HashSet
+~35ms  BTreeSet
+~380ms Custom Hashing
+~30ms  Custom Hashing with bytes
+~29ms  Custom Hashing + HashTable
+~30ms  Custom Hashing + HashTable + List
