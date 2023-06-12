@@ -3,36 +3,39 @@ use std::time::Instant;
 pub mod hashtable;
 use crate::hashtable::HashTable;
 
+const INS: &str = "ins";
+const DEL: &str = "del";
+const SEARCH: &str = "search";
+
 fn main() {
     let mut args = env::args();
     args.next();
 
     let Some(path) = args.next() else {
-        panic!("Missing file path!");
+        panic!("missing file path");
     };
 
-    let mut map: HashTable = HashTable::hashCreate(8192);
+    let mut map: HashTable = HashTable::hashCreate(8000);
     let now = Instant::now();
-    std::fs::read_to_string(path)
-        .expect("Should have been able to read the file!")
-        .lines()
-        .skip(1)
-        .for_each(|line| {
-            let split: Vec<&str> = line.split(' ').collect();
 
-            match split[0] {
-                "ins" => {
-                    println!("{} {}", split[0], map.hashInsert(split[1].to_string()));
-                }
-                "del" => {
-                    println!("{} {}", split[0], map.hashRemove(split[1].to_string()));
-                }
-                "search" => {
-                    println!("{} {}", split[0], map.hashSearch(split[1].to_string()));
-                }
-                _ => unreachable!(),
+    let data = std::fs::read_to_string(path).expect("tried reading file");
+
+    for line in data.lines().skip(1) {
+        let split: Vec<&str> = line.split(' ').collect();
+
+        match split[0] {
+            INS => {
+                println!("{} {}", INS, map.hashInsert(split[1].to_string()));
             }
-        });
+            DEL => {
+                println!("{} {}", DEL, map.hashRemove(split[1].to_string()));
+            }
+            SEARCH => {
+                println!("{} {}", SEARCH, map.hashSearch(split[1].to_string()));
+            }
+            _ => unreachable!(),
+        }
+    }
 
     println!("Time: {:?}", now.elapsed());
 }
