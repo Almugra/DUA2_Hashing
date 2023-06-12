@@ -42,7 +42,12 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
+    use std::path::PathBuf;
+
     use crate::HashTable;
+    use crate::DEL;
+    use crate::INS;
+    use crate::SEARCH;
 
     #[test]
     fn test_all_cases() {
@@ -53,40 +58,39 @@ mod tests {
         let mut entries = std::fs::read_dir(dir)
             .unwrap()
             .filter(|entry| {
-                !entry
+                entry
                     .as_ref()
                     .unwrap()
                     .path()
-                    .to_string_lossy()
-                    .ends_with(".sol")
+                    .extension()
+                    .map_or(true, |ext| ext != "sol")
             })
             .map(|entry| entry.unwrap().path());
 
         entries.all(|path| {
-            let path = path.to_string_lossy().to_string();
-            let res = convert_input(&path);
-            let sol = std::fs::read_to_string(path + ".sol").unwrap();
+            let res = convert_input(path.clone());
+            let sol = std::fs::read_to_string(path.with_extension("txt.sol")).unwrap();
             res == sol
         })
     }
 
-    fn convert_input(path: &str) -> String {
+    fn convert_input(path: PathBuf) -> String {
         let mut map: HashTable = HashTable::hashCreate(8192);
-        std::fs::read_to_string(path)
-            .unwrap()
-            .lines()
+        let data = std::fs::read_to_string(path).expect("tried reading file");
+
+        data.lines()
             .skip(1)
             .map(|line| {
                 let split: Vec<&str> = line.split(' ').collect();
                 match split[0] {
-                    "ins" => {
-                        format!("{} {}\n", split[0], map.hashInsert(split[1].to_string()))
+                    INS => {
+                        format!("{} {}\n", INS, map.hashInsert(split[1].to_string()))
                     }
-                    "del" => {
-                        format!("{} {}\n", split[0], map.hashRemove(split[1].to_string()))
+                    DEL => {
+                        format!("{} {}\n", DEL, map.hashRemove(split[1].to_string()))
                     }
-                    "search" => {
-                        format!("{} {}\n", split[0], map.hashSearch(split[1].to_string()))
+                    SEARCH => {
+                        format!("{} {}\n", SEARCH, map.hashSearch(split[1].to_string()))
                     }
                     _ => unreachable!(),
                 }
